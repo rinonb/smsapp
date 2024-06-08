@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Why use a storage layer?
+There's the possibility that while sending messages, especially multi part messages, there could be failures, such as connectivity issues, sms provider unavailability, etc. Having the data stored in the database would make it possible to add a retry mechanism.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### What's missing?
+Among other things, there's no serializer and not handling bad responses from sms provider. I did not implement these as I didn't want to spend more than 2 hours working on this actively.
