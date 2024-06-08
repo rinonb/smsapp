@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SmsProviderClient
   def self.call(text:, sender:, receiver:)
     new(text, sender, receiver).deliver

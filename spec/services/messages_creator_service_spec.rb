@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.shared_examples 'it should create message records' do
@@ -53,8 +55,8 @@ RSpec.describe MessagesCreatorService, type: :service do
       let(:text) { 'a' * 165 }
       let(:expected_parts) do
         [
-          'a' * (160 - '- part 1'.length) + '- part 1',
-          'a' * (5 + '- part 1'.length) + '- part 2'
+          "#{'a' * (160 - '- part 1'.length)}- part 1",
+          "#{'a' * (5 + '- part 1'.length)}- part 2"
         ]
       end
 
@@ -67,8 +69,8 @@ RSpec.describe MessagesCreatorService, type: :service do
       let(:text) { "#{'a' * 85} #{'b' * 85}" }
       let(:expected_parts) do
         [
-          'a' * 85 + '- part 1',
-          'b' * 85 + '- part 2'
+          "#{'a' * 85}- part 1",
+          "#{'b' * 85}- part 2"
         ]
       end
 

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Sms", type: :request do
-  describe "POST /index" do
+RSpec.describe 'Api::V1::Sms', type: :request do
+  describe 'POST /index' do
     context 'when params are valid' do
       let(:sender) { '+492123456789' }
       let(:receiver) { '+492123456790' }
@@ -9,8 +11,8 @@ RSpec.describe "Api::V1::Sms", type: :request do
 
       before do
         allow(SmsDeliveryService).to receive(:call).and_return({
-          result: "#{text} from #{sender} to #{receiver} sent"
-        })
+                                                                 result: "#{text} from #{sender} to #{receiver} sent"
+                                                               })
       end
 
       it 'should return successful response' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SmsDeliveryService
   def self.call(text:, sender:, receiver:)
     new(text, sender, receiver).call
@@ -15,7 +17,7 @@ class SmsDeliveryService
 
   def call
     message_parts = MessagesCreatorService.call(text:, sender:, receiver:)
-    message_parts.map{|part| deliver(part) }
+    message_parts.map { |part| deliver(part) }
   end
 
   def deliver(message_part)

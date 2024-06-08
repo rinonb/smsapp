@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagePart < ApplicationRecord
   MAX_MESSAGE_LENGTH = 160
 

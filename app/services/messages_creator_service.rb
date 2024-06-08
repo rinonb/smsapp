@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesCreatorService
   MESSAGE_TYPE = {
     single: :single,
@@ -46,18 +48,16 @@ class MessagesCreatorService
     truncation = truncate_message(input_message, part)
     truncated_message, text = truncation.values_at(:truncated_message, :text)
 
-    message_part = message.message_parts.create(text:, part: , status: 'created')
+    message_part = message.message_parts.create(text:, part:, status: 'created')
 
     truncated_message_length = truncated_message.length
-    new_input_message = input_message[truncated_message_length..-1]&.strip
+    new_input_message = input_message[truncated_message_length..]&.strip
 
     parts << message_part
 
-    if new_input_message && new_input_message.length > 0
-      return multiple_messages(new_input_message, parts)
-    end
+    return multiple_messages(new_input_message, parts) if new_input_message&.length&.positive?
 
-    return parts
+    parts
   end
 
   def truncate_message(input_message, part)

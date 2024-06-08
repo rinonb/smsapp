@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SmsContract < Dry::Validation::Contract
   params do
     required(:text).filled(:string)
