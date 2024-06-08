@@ -18,10 +18,10 @@ class SmsProviderClient
   private
 
   def success_response
-    { status: 201, text: "#{text} from #{sender} to #{receiver} sent" }
+    { status: 201, result: "#{text} from #{sender} to #{receiver} sent" }
   end
 
   def error_response
-    { status: 500, text: "Failed to send #{text} from #{sender} to #{receiver}" }
+    { status: 500, result: "Failed to send #{text} from #{sender} to #{receiver}" }
   end
 end

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_08_050641) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_08_214822) do
   create_table "message_parts", force: :cascade do |t|
     t.integer "message_id", null: false
     t.string "text", limit: 160, null: false
     t.integer "part", null: false
     t.string "status", default: "created", null: false
-    t.integer "response_code", null: false
-    t.string "response_message", null: false
+    t.integer "response_code"
+    t.string "response_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["message_id"], name: "index_message_parts_on_message_id"

@@ -3,6 +3,6 @@ class MessagePart < ApplicationRecord
 
   belongs_to :message
 
-  validates_presence_of :message, :part, :status, :response_code, :response_message
+  validates_presence_of :message, :part, :status
   validates :text, presence: true, length: { maximum: MAX_MESSAGE_LENGTH }
 end

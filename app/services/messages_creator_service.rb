@@ -12,6 +12,9 @@ class MessagesCreatorService
   attr_accessor :message
 
   def initialize(text, sender, receiver)
+    contract = SmsContract.new.call({ text:, sender:, receiver: })
+    raise InvalidSmsPayload, contract.errors.to_h if contract.failure?
+
     @text = text
     @sender = sender
     @receiver = receiver
@@ -39,6 +42,7 @@ class MessagesCreatorService
   end
 
   def multiple_messages(input_message = text, parts = [])
+    part = parts.count + 1
     truncation = truncate_message(input_message, part)
     truncated_message, text = truncation.values_at(:truncated_message, :text)
 
@@ -47,17 +51,19 @@ class MessagesCreatorService
     truncated_message_length = truncated_message.length
     new_input_message = input_message[truncated_message_length..-1]&.strip
 
+    parts << message_part
+
     if new_input_message && new_input_message.length > 0
-      return multiple_messages(new_input_message, parts << message_part)
+      return multiple_messages(new_input_message, parts)
     end
 
     return parts
   end
 
   def truncate_message(input_message, part)
-    suffix = " - part #{part}"
+    suffix = "- part #{part}"
     message_length = max_length - suffix.length
-    truncated_message = input_message.truncate(message_length - 1, separareceiverr: ' ', omission: '')
+    truncated_message = input_message.truncate(message_length, separator: ' ', omission: '')
     text = "#{truncated_message}#{suffix}"
 
     {
