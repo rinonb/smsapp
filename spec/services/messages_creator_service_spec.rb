@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.shared_examples 'it should create message records' do
-  # it 'should create message record' do
-  #   subject.call(sender:, receiver:, text:)
-  #   expect(Message.find_by(sender:, receiver:)).to be_present
-  # end
+  it 'should create message record' do
+    subject.call(sender:, receiver:, text:)
+    expect(Message.find_by(sender:, receiver:)).to be_present
+  end
 
   it 'should create message part records' do
     subject.call(sender:, receiver:, text:)
